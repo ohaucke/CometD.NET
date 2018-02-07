@@ -1,15 +1,14 @@
+using Cometd.Bayeux;
+using Cometd.Common;
 using System;
 using System.Collections.Generic;
-using System.Net;
+using System.Collections.Specialized;
 using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Web.Script.Serialization;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Cometd.Bayeux;
-using Cometd.Common;
-
+using System.Web.Script.Serialization;
 
 namespace Cometd.Client.Transport
 {
@@ -158,6 +157,10 @@ namespace Cometd.Client.Transport
                 request.CookieContainer = new CookieContainer();
             request.CookieContainer.Add(getCookieCollection());
 
+            if (request.Headers == null)
+                request.Headers = new WebHeaderCollection();
+            request.Headers.Add(getHeaderCollection());
+
             JavaScriptSerializer jsonParser = new JavaScriptSerializer();
             String content = jsonParser.Serialize(ObjectConverter.ToListOfDictionary(messages));
 
@@ -278,6 +281,10 @@ namespace Cometd.Client.Transport
             }
         }
 
+        public void AddHeaders(NameValueCollection headers)
+        {
+            addHeaders(headers);
+        }
 
         public class TransportExchange
         {

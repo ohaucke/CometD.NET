@@ -1,18 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Net;
-using System.Text;
 
 namespace Cometd.Client.Transport
 {
     public abstract class HttpClientTransport : ClientTransport
     {
         private String url;
+        private WebHeaderCollection headerCollection;
         private CookieCollection cookieCollection;
 
         protected HttpClientTransport(String name, IDictionary<String, Object> options)
             : base(name, options)
         {
+            setHeaderCollection(new WebHeaderCollection());
         }
 
         protected String getURL()
@@ -23,6 +25,23 @@ namespace Cometd.Client.Transport
         public void setURL(String url)
         {
             this.url = url;
+        }
+
+        protected WebHeaderCollection getHeaderCollection()
+        {
+            return headerCollection;
+        }
+
+        public void setHeaderCollection(WebHeaderCollection headerCollection)
+        {
+            this.headerCollection = headerCollection;
+        }
+
+        protected internal void addHeaders(NameValueCollection headers)
+        {
+            WebHeaderCollection headerCollection = this.headerCollection;
+            if (headerCollection != null)
+                headerCollection.Add(headers);
         }
 
         protected CookieCollection getCookieCollection()

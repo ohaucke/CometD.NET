@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>cometd</id>
+    <version>$version$</version>
+    <authors>Magnus Galåen</authors>
+    <owners>Oyatel</owners>
+    <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>CometD.NET is a project to provide an implementation of the Bayeux protocol in .NET</description>
+    <releaseNotes>None.</releaseNotes>
+    <copyright>none</copyright>
+    <tags>cometd</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\cometd.dll" target="lib\net45" />
+  </files>
+</package>
